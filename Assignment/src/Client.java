@@ -9,8 +9,9 @@ public class Client {
     
         Track Never = new Track("Never Gonna Give You Up", "Risk Astley", 3.31, 1);
         Track Good = new Track("Good Morning", "Kanye West", 3.15, 2);
-
-        Good.trackDetails();
+        Track currentTrack = new Track();
+        
+        currentTrack.trackDetails();
         
 
     }
