@@ -1,23 +1,22 @@
 
 
 public class Track {
-    String TrackName;
-    String Artist; 
-    Double Duration;
-    Integer SongID;
+    String trackName;
+    String artist; 
+    Double duration;
+    Integer songId;
 
-    public Track(String TrackName, String Artist, Double Duration, Integer SongID) {
-        this.TrackName = TrackName;
-        this.Artist = Artist;
-        this.Duration = Duration;
-        this.SongID = SongID;
+    public Track(String trackName, String artist, Double duration, Integer songId) {
+        this.trackName = trackName;
+        this.artist = artist;
+        this.duration = duration;
+        this.songId = songId;
     }
 
-    public void TrackDetails() {
-        System.out.println(this.SongID);
-        System.out.println(this.TrackName);
-        System.out.println(this.Artist);
-        System.out.println(this.Duration);
+    public void trackDetails() {
+        System.out.println("Current Track: " + this.trackName);
+        System.out.println("By " + this.artist);
+        System.out.println("Duration: " + this.duration);
     }
 
 }
