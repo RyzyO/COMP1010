@@ -39,13 +39,4 @@ public class Track {
     }
 
 
-    // UNSURE IF WE NEED THIS 
-    public void trackDetails() {
-        System.out.println(this.SongID);
-        System.out.println(this.TrackName);
-        System.out.println(this.Artist);
-        System.out.println(this.Duration);
-        System.out.println(this.Genre);
-    }
-
 }
