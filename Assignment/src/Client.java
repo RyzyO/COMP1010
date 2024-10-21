@@ -19,23 +19,23 @@ public class Client {
         int currentTrackIndex = 0;
 
         //Simulated input: A seuquence of commands ('n' for next, 'p' for previous, 'q' for quitting)
-        char[] simulatedUserChoices = {'n','n', 'n','p','p','q'};
+        char[] simulatedUserChoices = {'n','n', 'n','p','p'};
         int inputIndex = 0;
+
+        //Display Current Track Information
+        System.out.println("Now Playing: ");
+        System.out.println(tracks[0].getTrackInfo());
+        //Ask user for input; next, previous, quit
+        System.out.println("Enter n for next track, p for previous track, or q to quit");
 
         //Main Navigation Loop
         while (inputIndex < simulatedUserChoices.length){
             char userChoice = simulatedUserChoices[inputIndex];
 
-            //Ask user for input; next, previous, quit
-            System.out.println("Enter 'n' for next track, 'p' for previous track, or 'q' to quit");
-
             //Navigation based on input sequence
             if (userChoice == 'n'){
                 if (currentTrackIndex < tracks.length - 1){
                     currentTrackIndex++;
-                    //Display Current Track Information
-                    System.out.println("Now Playing: ");
-                    System.out.println(tracks[currentTrackIndex].getTrackInfo());
                 }
                 else {
                     System.out.println("You are at the last track.");
@@ -44,20 +44,20 @@ public class Client {
             else if(userChoice == 'p'){
                 if (currentTrackIndex > 0){
                     currentTrackIndex--;
-                    //Display Current Track Information
-                    System.out.println("Now Playing: ");
-                    System.out.println(tracks[currentTrackIndex].getTrackInfo());
                 }
                 else {
                     System.out.println("You are at the first track.");
                 }
             }
             else if (userChoice == 'q'){
+                System.out.println("Exiting player. Goodbye!");
                 break;
-                
+            }
+            else {
+                System.out.println("Invalid input. Please enter n, p, q");
             }
             inputIndex++;
-            System.out.println("Exiting player. Goodbye!");
+            
         }
         
     }
