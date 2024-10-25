@@ -42,8 +42,8 @@ public class Client {
         //Main Navigation Loop
         while (true){
             System.out.println("Current playlist name: " + playlistName);
-            char input = readCharInput();
             String userChoice = System.console().readLine("Enter your choice: ").trim();
+            
             
             boolean trackChanged = false;
 
