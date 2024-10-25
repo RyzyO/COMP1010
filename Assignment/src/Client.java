@@ -43,6 +43,7 @@ public class Client {
         while (true){
             System.out.println("Current playlist name: " + playlistName);
             String userChoice = System.console().readLine("Enter your choice: ").trim();
+            System.out.println(" ");
             
             
             boolean trackChanged = false;
@@ -100,12 +101,15 @@ public class Client {
                     playlistCreated = true;
                     //Show them how to manage the playlists
                     System.out.println("Press 'a' to add a track, 'r' to rename the playlist or 'd' to display the playlist");
+                    System.out.println(" ");
                 }
             }
             else if (userChoice.equals("a")){
                 if (playlistCreated){
                     addTrackToPlaylist(tracks[currentTrackIndex]);
                     System.out.println("Track added to the playlist: " + tracks[currentTrackIndex].getTitle());
+                    System.out.println("To save the playlist with the new songs, use 'save' and either retype the name of the file or create a new one!");
+                    System.out.println(" ");
                 }
                 else {
                     System.out.println("Playlist is not created yet. Use 'save' to create the playlist first.");
@@ -156,9 +160,12 @@ public class Client {
         // Write header
         writer.println("Track Name, Artist, Duration (Seconds), SongID, Genre");
     
-        // Write each track's details
-        for (Track track : tracks) {
+        //Write only tracks that are in the playlist
+        Node current = head; //Start from the head of the linked list
+        while (current != null){
+            Track track = current.track;
             writer.println(track.TrackName + "," + track.Artist + "," + track.Duration + "," + track.SongID + "," + track.Genre);
+            current = current.next; // Move onto the next node in the list
         }
         writer.close(); // Close the writer
     }
