@@ -1,6 +1,9 @@
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.Random;
+
 public class Client {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         System.out.println("COMP1010 Major Assignment");
         //Initialising an array of tracks
         Track[] tracks = new Track[14]; //Adjustable for when we add more tracks
@@ -29,7 +32,7 @@ public class Client {
         System.out.println("Now Playing: ");
         System.out.println(tracks[currentTrackIndex].getTrackInfo());
         //Ask user for input; next, previous, quit
-        System.out.println("Enter n for next track, p for previous track, q to quit or s to enable shuffle");
+        System.out.println("Enter n for next track, p for previous track, q to quit, s to enable shuffle, or save to create Playlist");
 
         //Main Navigation Loop
         while (true){
@@ -74,15 +77,25 @@ public class Client {
                 System.exit(0); //This will close the console
                 break; //Not needed but just a fallback just in case
             }
-
             else if (userChoice.equals("s")){
                 //Toggle shuffle mode
                 isShuffleEnabled = !isShuffleEnabled;
                 String shuffleStatus = isShuffleEnabled ? "enabled" : "disabled";
                 System.out.println("Shuffle mode " + shuffleStatus);
             }
+            else if (userChoice.equals("save")) {
+                // Ask the user for a file name and ensure it ends with .csv
+                String fileName = System.console().readLine("Enter a file name to save the playlist (e.g., playlist.csv): ").trim();
+                if (!fileName.endsWith(".csv")) {
+                    System.out.println("Invalid file name. Please include the .csv extension.");
+                } else {
+                    // Call the save method without a try-catch block
+                    saveTracksToCSV(tracks, fileName); // Use a method that saves to file
+                    System.out.println("Playlist saved to " + fileName);
+                }
+            }
             else {
-                System.out.println("Invalid input. Please enter n, p, q or s");
+                System.out.println("Invalid input. Please enter n, p, q, s, or save.");
             }
             //Only display the track if it actually changed.
             if (trackChanged){
@@ -92,8 +105,21 @@ public class Client {
                 System.out.println(tracks[currentTrackIndex].getTrackInfo());
             }
             
-            
         }
         
     }
+    public static void saveTracksToCSV(Track[] tracks, String fileName) throws FileNotFoundException, UnsupportedEncodingException {
+        // Writing data manually to a file without new imports
+        java.io.PrintWriter writer = new java.io.PrintWriter(fileName, "UTF-8");
+    
+        // Write header
+        writer.println("Track Name, Artist, Duration (Seconds), SongID, Genre");
+    
+        // Write each track's details
+        for (Track track : tracks) {
+            writer.println(track.TrackName + "," + track.Artist + "," + track.Duration + "," + track.SongID + "," + track.Genre);
+        }
+        writer.close(); // Close the writer
+    }
 }
+
