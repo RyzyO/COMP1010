@@ -1,11 +1,12 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 public class Client {
     private static Node head = null; // Head node for the linked list (Playlist)
     private static String playlistName = "My Playlist"; //Default name for the playlist
-    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         System.out.println("COMP1010 Major Assignment");
         //Initialising an array of tracks
         Track[] tracks = new Track[14]; //Adjustable for when we add more tracks
@@ -42,8 +43,6 @@ public class Client {
         while (true){
             System.out.println("Current playlist name: " + playlistName);
             char input = readCharInput();
-            //System.in.read();//Consumes newline character after input
-            // Using System.console() for input
             String userChoice = System.console().readLine("Enter your choice: ").trim();
             
             boolean trackChanged = false;
@@ -67,8 +66,7 @@ public class Client {
                         System.out.println("You are at the last track.");
                     }
                 }
-                trackChanged = true; // Track moved to the next
-                
+                trackChanged = true; // Track moved to the next   
             }
             else if(userChoice.equals ("p")){
                 if (currentTrackIndex > 0){
@@ -223,6 +221,21 @@ public class Client {
         if (node != null){
             System.out.println("Track: " + node.track.getTitle() + " by " + node.track.getArtist());
             displayPlaylistRecursive(node.next);
+        }
+    }
+
+    //Method to read a single character input from the console
+    private static char readCharInput() throws IOException{
+        try {
+            //Read a single character and return it
+            int input = System.in.read();
+            //Consume the new line if there is any
+            System.in.read(new byte[System.in.available()]);
+            return (char) input;
+        }
+        catch (IOException e){
+            System.out.println("Error reading input.");
+            return ' ';// Return a default value or handle the error as needed 
         }
     }
 }
