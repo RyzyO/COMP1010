@@ -1,27 +1,22 @@
-<<<<<<< HEAD
 package src;
 
-=======
->>>>>>> 4fab4c3cc92d2b12233b3d98ec85edd1ace0c6b4
 import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 public class Playlist {
     private String name;
     private ArrayList<Track> tracks;
 
-<<<<<<< HEAD
-=======
     // Constructor
->>>>>>> 4fab4c3cc92d2b12233b3d98ec85edd1ace0c6b4
     public Playlist(String name) {
         this.name = name;
         this.tracks = new ArrayList<>();
     }
 
-<<<<<<< HEAD
     public void addTrack(Track track) {
         tracks.add(track);
-        System.out.println("Track added: " + track.getTitle());
+        System.out.println("Track added: " + track.getTrackInfo());
     }
 
     public void renamePlaylist(String newName) {
@@ -32,21 +27,21 @@ public class Playlist {
     public void displayTracks() {
         System.out.println("Playlist: " + this.name);
         for (Track track : tracks) {
-            System.out.println("- " + track.getTitle());
+            System.out.println("- " + track.getTrackInfo());
         }
     }
 
     // Simulate adding tracks by pressing 'a' and renaming by pressing Shift+R
     public void run() {
         // Simulating user actions: Add track and rename
-        System.out.println("Press 'a' to add a track or 'Shift+R' to rename the playlist.");
+        System.out.println("Press 'a' to add a track or 'Shift+r' to rename the playlist.");
         String input = "a";  // Simulating the 'a' key being pressed
         if (input.equals("a")) {
-            addTrack(new Track("New Track"));
+            addTrack(new Track("New Track", "Unknown Artist", 200, 1, "Genre"));
         }
 
-        input = "Shift+R";  // Simulating 'Shift+R' being pressed
-        if (input.equals("Shift+R")) {
+        input = "Shift+r";  // Simulating 'Shift+R' being pressed
+        if (input.equals("Shift+r")) {
             String newName = "Renamed Playlist";  // Simulating renaming action
             renamePlaylist(newName);
         }
@@ -57,9 +52,9 @@ public class Playlist {
     public static void main(String[] args) {
         Playlist playlist = new Playlist("My Playlist");
         playlist.run();
-=======
+
     // Add a track to the playlist
-    public void addTrack(Track track) {
+    public static void addTrack(Track track) {
         tracks.add(track);
         System.out.println(track.getTrackInfo() + " added to playlist " + name);
     }
@@ -89,6 +84,6 @@ public class Playlist {
     // Getter for playlist name
     public String getName() {
         return name;
->>>>>>> 4fab4c3cc92d2b12233b3d98ec85edd1ace0c6b4
     }
+}
 }

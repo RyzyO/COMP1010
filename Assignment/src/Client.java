@@ -3,6 +3,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 public class Client {
+    private static Node head = null; // Head node for the linked list (Playlist)
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         System.out.println("COMP1010 Major Assignment");
         //Initialising an array of tracks
@@ -26,13 +27,15 @@ public class Client {
         //Start at Track 1
         int currentTrackIndex = 0;
         boolean isShuffleEnabled = false; // Shuffle mode flag
+        boolean playlistCreated = false; //Flag to check if playlist is created
         Random random = new Random(); //Random number generator for shuffle mode
 
         //Display Current Track Information
         System.out.println("Now Playing: ");
         System.out.println(tracks[currentTrackIndex].getTrackInfo());
-        //Ask user for input; next, previous, quit
+        //Ask user for input; next, previous, quit, shuffle or save to playlist
         System.out.println("Enter n for next track, p for previous track, q to quit, s to enable shuffle, or save to create Playlist");
+        
 
         //Main Navigation Loop
         while (true){
@@ -92,7 +95,24 @@ public class Client {
                     // Call the save method without a try-catch block
                     saveTracksToCSV(tracks, fileName); // Use a method that saves to file
                     System.out.println("Playlist saved to " + fileName);
+                    playlistCreated = true;
+                    //Show them how to manage the playlists
+                    System.out.println("Press 'a' to add a track, 'r' to rename the playlist or 'd' to display the playlist");
                 }
+            }
+            else if (userChoice.equals("a")){
+                if (playlistCreated){
+                    addTrackToPlaylist(tracks[currentTrackIndex]);
+                    System.out.println("Track added to the playlist: " + tracks[currentTrackIndex].getTitle());
+                }
+                else {
+                    System.out.println("Playlist is not created yet. Use 'save' to create the playlist first.");
+                }
+            }
+            else if (userChoice.equals("d")){
+                System.out.println("Displaying all tracks in playlist:");
+                displayPlaylist();
+                break;
             }
             else {
                 System.out.println("Invalid input. Please enter n, p, q, s, or save.");
@@ -120,6 +140,67 @@ public class Client {
             writer.println(track.TrackName + "," + track.Artist + "," + track.Duration + "," + track.SongID + "," + track.Genre);
         }
         writer.close(); // Close the writer
+    }
+
+    // Node class for the linked list
+    private static class Node{
+        Track track;
+        Node next;
+
+        Node (Track track){
+            this.track = track;
+            this.next = null;
+        }
+    }
+
+    
+    // Method to add a track to the linked list (Playlist)
+    private static void addTrackToPlaylist(Track track){
+        if (head == null){ // Check if the playlist is empty
+            head = new Node(track);
+        }
+        else {
+            addTrackRecursive(head, track);
+        }
+    }
+
+    // Recursive method to add track to the end of the linked list
+    private static void addTrackRecursive(Node current, Track track){
+        if (current.next == null){
+            current.next = new Node(track);
+        }
+        else {
+            addTrackRecursive(current.next, track);
+        }
+    }
+
+    //Method to see if track is already in linked list (Playlist)
+    private static boolean isTrackInPlaylist(Track track){
+        return isTrackInPlaylistRecursive(head, track);
+    }
+
+    //Recursive method to check for duplicate track in linked list (playlist)
+    private static boolean isTrackInPlaylistRecursive(Node node, Track track){
+        if (node == null){
+            return false;//Reached end of the list, track not found
+        }
+        if (node.track.getTitle().equals(track.getTitle()) && node.track.getArtist().equals(track.getArtist())){
+            return true; //Track found in playlist
+        }
+        return isTrackInPlaylistRecursive(node.next, track);
+    }
+
+    //Method to display all tracks in the linked list (Playlist)
+    private static void displayPlaylist(){
+        displayPlaylistRecursive(head);
+    }
+
+    //Recursive method to display tracks
+    private static void displayPlaylistRecursive(Node node){
+        if (node != null){
+            System.out.println("Track: " + node.track.getTitle() + " by " + node.track.getArtist());
+            displayPlaylistRecursive(node.next);
+        }
     }
 }
 
