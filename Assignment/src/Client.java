@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Client {
     private static Node head = null; // Head node for the linked list (Playlist)
+    private static String playlistName = "My Playlist"; //Default name for the playlist
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         System.out.println("COMP1010 Major Assignment");
         //Initialising an array of tracks
@@ -39,6 +40,9 @@ public class Client {
 
         //Main Navigation Loop
         while (true){
+            System.out.println("Current playlist name: " + playlistName);
+            char input = readCharInput();
+            //System.in.read();//Consumes newline character after input
             // Using System.console() for input
             String userChoice = System.console().readLine("Enter your choice: ").trim();
             
@@ -110,9 +114,28 @@ public class Client {
                 }
             }
             else if (userChoice.equals("d")){
-                System.out.println("Displaying all tracks in playlist:");
-                displayPlaylist();
-                break;
+                if (playlistCreated){
+                    System.out.println("Displaying all tracks in playlist:");
+                    displayPlaylist();
+                }
+                else {
+                    System.out.println("Playlist is not created yet. Use 'save' to create the playlist first.");
+                }
+            }
+            else if(userChoice.equals("r")){
+                if (playlistCreated){
+                    System.err.println("Enter a new name for the playlist: ");
+                    playlistName = "";
+                    int ch;
+                    while ((ch = System.in.read())!= '\n' && ch != '\r'){//read until new line
+                        playlistName += (char) ch; //Append each character
+                    }
+                    playlistName = playlistName.trim();
+                    System.out.println("Playlist renamed to: " + playlistName);
+                }
+                else{
+                    System.out.println("Playlist is not created yet. Use 'save' to create the playlist first.");
+                }
             }
             else {
                 System.out.println("Invalid input. Please enter n, p, q, s, or save.");
