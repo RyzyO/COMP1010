@@ -158,7 +158,7 @@ public class Client {
         java.io.PrintWriter writer = new java.io.PrintWriter(fileName, "UTF-8");
     
         // Write header
-        writer.println("Track Name, Artist, Duration (Seconds), SongID, Genre");
+        writer.println("Track Name, Artist, Album, Duration (Seconds), SongID, Genre");
     
         //Write only tracks that are in the playlist
         Node current = head; //Start from the head of the linked list
