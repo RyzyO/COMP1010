@@ -25,7 +25,7 @@ public class Client {
         tracks[11] = new Track("Joker And The Thief", "Wolfmother", "Wolfmother", 280, 12, "Rock");
         tracks[12] = new Track("This Is How You Remind Me", "Nickelback", "Silver Side Up", 224, 13, "Rock");
         tracks[13] = new Track("The Pretender", "Foo Fighters", "Echoes,Silence,Patience&Grace", 269, 14, "Rock");
-        
+       
         //Start at Track 1
         int currentTrackIndex = 0;
         boolean isShuffleEnabled = false; // Shuffle mode flag
