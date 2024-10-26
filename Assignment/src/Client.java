@@ -105,8 +105,9 @@ public class Client {
                 }
             }
             else if (userChoice.equals("a")){
+                //Checking to see if the playlist is created
                 if (playlistCreated){
-                    addTrackToPlaylist(tracks[currentTrackIndex]);
+                    addTrackToPlaylist(tracks[currentTrackIndex]); //Add tracks to the playlist
                     System.out.println("Track added to the playlist: " + tracks[currentTrackIndex].getTitle());
                     System.out.println("To save the playlist with the new songs, use 'save' and either retype the name of the file or create a new one!");
                     System.out.println(" ");
@@ -116,8 +117,10 @@ public class Client {
                 }
             }
             else if (userChoice.equals("d")){
+                //Checking to see if the playlist is created
                 if (playlistCreated){
                     System.out.println("Displaying all tracks in playlist:");
+                    //display all the songs in the playlist
                     displayPlaylist();
                 }
                 else {
