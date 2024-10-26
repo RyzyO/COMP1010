@@ -53,6 +53,7 @@ The program listens for the following inputs from the user:
 Each track in the player is an instance of the Track class. The following properties are available for each track:
     - Title: The name of the track.
     - Artist: The name of the performing artist.
+    - Album: The Album that the track is from.
     - Duration: The length of the track in seconds.
     - Track Number: The unique identifier for each track in the track list.
     - Genre: The music genre of the track (e.g, Pop, Rock, Dance Pop).
@@ -67,6 +68,7 @@ COMP1010 Major Assignment
 Now Playing: 
 Track: Never Gonna Give You Up
 Artist: Risk Astley
+Album: Whenever You Need Somebody
 Duration: 211 seconds
 Genre: Pop
 Enter n for next track, p for previous track, q to quit or s to enable shuffle

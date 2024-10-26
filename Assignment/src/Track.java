@@ -2,6 +2,7 @@ import java.util.ArrayList;
 public class Track {
     String TrackName;
     String Artist; 
+    String Album;
     int Duration; // in seconds as per the UML
     Integer SongID;
     String Genre;
@@ -10,9 +11,10 @@ public class Track {
     static ArrayList<Track> tracklist = new ArrayList<>();
 
     // Constructor
-    public Track(String TrackName, String Artist, int Duration, Integer SongID, String Genre) {
+    public Track(String TrackName, String Artist, String Album, int Duration, Integer SongID, String Genre) {
         this.TrackName = TrackName;
         this.Artist = Artist;
+        this.Album = Album;
         this.Duration = Duration;
         this.SongID = SongID;
         this.Genre = Genre;
@@ -20,7 +22,7 @@ public class Track {
 
     //Method to play the track
     public void play(){
-        System.out.println("Playing " + TrackName + " by " + Artist);
+        System.out.println("Playing " + TrackName + " by " + Artist + Album);
     }
 
     //Method to pause the track
@@ -35,7 +37,7 @@ public class Track {
 
     //Method to get track info
     public String getTrackInfo(){
-        return "Track: "+ TrackName + "\nArtist: "+ Artist + "\nDuration: "+ Duration + " seconds\nGenre: " + Genre;
+        return "Track: "+ TrackName + "\nArtist: "+ Artist + "\nAlbum: " + Album + "\nDuration: "+ Duration + " seconds\nGenre: " + Genre;
     }
 
     //Method for getting the title
