@@ -40,7 +40,7 @@ public class Client {
         
 
         //Main Navigation Loop
-        while (true){
+        while(true) {
             System.out.println("Current playlist name: " + playlistName);
             String userChoice = System.console().readLine("Enter your choice: ").trim();
             System.out.println(" ");
@@ -59,7 +59,7 @@ public class Client {
                     while (newTrackIndex == currentTrackIndex); //Ensuring its a different track
                     currentTrackIndex = newTrackIndex;
                 }
-                else{ //Normal Mode: Move to next track in sequence
+                else { //Normal Mode: Move to next track in sequence
                     if (currentTrackIndex < tracks.length - 1){
                         currentTrackIndex++;
                     }
