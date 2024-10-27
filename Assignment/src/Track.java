@@ -20,6 +20,10 @@ public class Track {
         this.Genre = Genre;
     }
 
+    public Track(String string, String string2) {
+        //TODO Auto-generated constructor stub
+    }
+
     //Method to play the track
     public void play(){
         System.out.println("Playing " + TrackName + " by " + Artist + Album);

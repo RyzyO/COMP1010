@@ -186,7 +186,7 @@ public class Client {
 
     
     // Method to add a track to the linked list (Playlist)
-    private static void addTrackToPlaylist(Track track){
+    static void addTrackToPlaylist(Track track){
         if (head == null){ // Check if the playlist is empty
             head = new Node(track);
         }
@@ -205,22 +205,6 @@ public class Client {
         }
     }
 
-    //Method to see if track is already in linked list (Playlist)
-    private static boolean isTrackInPlaylist(Track track){
-        return isTrackInPlaylistRecursive(head, track);
-    }
-
-    //Recursive method to check for duplicate track in linked list (playlist)
-    private static boolean isTrackInPlaylistRecursive(Node node, Track track){
-        if (node == null){
-            return false;//Reached end of the list, track not found
-        }
-        if (node.track.getTitle().equals(track.getTitle()) && node.track.getArtist().equals(track.getArtist())){
-            return true; //Track found in playlist
-        }
-        return isTrackInPlaylistRecursive(node.next, track);
-    }
-
     //Method to display all tracks in the linked list (Playlist)
     private static void displayPlaylist(){
         displayPlaylistRecursive(head);
@@ -233,20 +217,9 @@ public class Client {
             displayPlaylistRecursive(node.next);
         }
     }
-
-    //Method to read a single character input from the console
-    private static char readCharInput() throws IOException{
-        try {
-            //Read a single character and return it
-            int input = System.in.read();
-            //Consume the new line if there is any
-            System.in.read(new byte[System.in.available()]);
-            return (char) input;
-        }
-        catch (IOException e){
-            System.out.println("Error reading input.");
-            return ' ';// Return a default value or handle the error as needed 
-        }
+    public boolean isTrackInPlaylist(Track track) {
+       
+        throw new UnsupportedOperationException("Unimplemented method 'isTrackInPlaylist'");
     }
 }
 
