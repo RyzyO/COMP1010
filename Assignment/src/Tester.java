@@ -1,6 +1,8 @@
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -79,6 +81,14 @@ public class Tester {
         Collections.shuffle(playlist);
         String trackAfterShuffle = playlist.get(0); // Random first track after shuffle
         assertNotNull("There should still be a valid track after shuffle", trackAfterShuffle);
+    }
+
+    //Test to check if adding a new track increases playlist size
+    @Test 
+    public void testAddTrackIncreaseSize() {
+        int initialSize = playlist.size();
+        playlist.add("Song E"); // Adding a new track
+        assertEquals("Playlist size should increase by 1 after adding a new track", initialSize +1 , playlist.size());
     }
 
 }
