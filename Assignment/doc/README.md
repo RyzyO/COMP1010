@@ -17,7 +17,7 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 
 The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
 
-## COMP1010 Major Assingment - Music Player
+# COMP1010 Major Assingment - Music Player
 
 ## Project overview
 
@@ -30,17 +30,12 @@ Track information: Displays track details such as title, artist, duration, track
 User interaction: Commands are entered through the console to control track navigation
 Exit functionality: User can quit the application by typing a specific command
 
+# How to run the program
+
 ## Prerequisites 
 To run this program you will need;
     - A terminal or command line interface (VS Code works fine)
     - Java Development Kit (JDK) version 8 or higher
-
-## Commands
-The program listens for the following inputs from the user:
-    - n: Move to the next track in the track selection.
-    - p: Go back to the previous track.
-    - s: Toggle shuffle mode on or off.
-    - q: Quit the music player
 
 ## Program Flow
 1. When the program starts, it initialises a list of predefined tracks, and the first track is played by default.
@@ -58,6 +53,13 @@ Each track in the player is an instance of the Track class. The following proper
     - Track Number: The unique identifier for each track in the track list.
     - Genre: The music genre of the track (e.g, Pop, Rock, Dance Pop).
 
+## Commands
+The program listens for the following inputs from the user:
+    - n: Move to the next track in the track selection.
+    - p: Go back to the previous track.
+    - s: Toggle shuffle mode on or off.
+    - q: Quit the music player
+
 ## Shuffle Mode
 Shuffle mode enables randomised playback of tracks. When shuffle is enabled, the system selects a random track from the playlist, ensuring the same track is not played twice in a row. You toggle shuffle mode by pressing the s key.
 
@@ -73,10 +75,19 @@ Duration: 211 seconds
 Genre: Pop
 Enter n for next track, p for previous track, q to quit or s to enable shuffle
 
-    - If the user types n, the next track is played.
+    - If the user types n, the next track is played (Unless it's the last track).
     - If the user types p, the previous track is played (Unless it's the first track).
     - If the user types s, shuffle mode is toggled on/off.
     - If the user types q, the player will display a goodbye message and terminate.
+
+## Playlist Creation
+Create a playlist by typing "save" in the terminal. You will then be prompted to name your file however you want just make sure to add .csv at the end. After which you can start adding tracks to the playlist. You will then be prompted to one of three choices.
+
+    - If the user types a, the current track they are playing will be added to the playlist.
+    - If the user types r, to rename the current playlist with all the tracks.
+    - If the user types d, it will display all the tracks in the playlist csv file you just created.
+
+You can add tracks by going through the track playlist by entering "n" or "p" and when you reach a track you like simply enter "a" to add it to your playlist when. When you are staisfied with your current playlist type save again and re enter the name of the file you created. You can then see the playlist you created by entering "d" into the terminal.
 
 ## Exit The Program
 To exit the player, enter q in the command line. The program will output:
